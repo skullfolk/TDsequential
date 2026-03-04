@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: quant-frontend
+  namespace: tdsequential          # ← namespace แยกออกจาก app อื่น
   labels:
     app: quant-frontend
 spec:
@@ -14,10 +15,12 @@ spec:
       labels:
         app: quant-frontend
     spec:
+      imagePullSecrets:          # ← ต้องเป็น camelCase และรูปแบบ list
+        - name: ghcr-pull-secret
       containers:
         - name: quant-frontend
           image: ghcr.io/skullfolk/quant-frontend:v1.0.1-aca6a8a
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           livenessProbe:
@@ -38,6 +41,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: quant-frontend-svc
+  namespace: tdsequential
 spec:
   selector:
     app: quant-frontend

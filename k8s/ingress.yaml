@@ -2,12 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: quant-ingress
+  namespace: tdsequential
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: quant.yourdomain.com
-      http:
+    - http:           # ← ไม่ระบุ host เพราะเป็น Private Cluster ใช้ NAT
         paths:
           - path: /api
             pathType: Prefix

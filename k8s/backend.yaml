@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: quant-backend
+  namespace: tdsequential          # ← namespace แยกออกจาก app อื่น
   labels:
     app: quant-backend
 spec:
@@ -14,10 +15,12 @@ spec:
       labels:
         app: quant-backend
     spec:
+      imagePullSecrets:          # ← ต้องเป็น camelCase
+        - name: ghcr-pull-secret
       containers:
         - name: quant-backend
           image: ghcr.io/skullfolk/quant-backend:v1.0.1-aca6a8a
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           env:
@@ -58,6 +61,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: quant-db-pvc
+  namespace: tdsequential
 spec:
   accessModes:
     - ReadWriteOnce
@@ -69,6 +73,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: quant-backend-svc
+  namespace: tdsequential
 spec:
   selector:
     app: quant-backend
