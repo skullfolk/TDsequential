@@ -63,7 +63,7 @@ function App() {
             <button
               onClick={async () => {
                 await import('./api/client').then(m => m.apiClient.post('/analyze/refresh', {
-                  symbol_yf: 'XAUUSD=X', display_name: 'XAUUSD'
+                  symbol_yf: 'GC=F', display_name: 'XAUUSD'
                 }));
                 setTimeout(() => refetch(), 15000);
               }}
@@ -73,7 +73,7 @@ function App() {
               <span>Trigger First Analysis</span>
             </button>
             <p className="text-xs text-slate-600 font-mono">
-              Backend: <span className="text-green-400">✓ Online (port 8001)</span>
+              Backend: <span className="text-green-400">✓ Online (port 8000)</span>
             </p>
           </div>
 
