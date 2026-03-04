@@ -19,7 +19,7 @@ spec:
         - name: ghcr-pull-secret
       containers:
         - name: quant-backend
-          image: ghcr.io/skullfolk/quant-backend:v1.0.2-fce3938
+          image: ghcr.io/skullfolk/quant-backend:v1.0.6-f2c6e0c
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
