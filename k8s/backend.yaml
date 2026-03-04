@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: quant-backend
-          image: quant-backend:latest
+          image: ghcr.io/skullfolk/quant-backend:v1.0.1-aca6a8a
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
