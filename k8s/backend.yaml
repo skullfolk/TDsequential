@@ -26,6 +26,8 @@ spec:
           env:
             - name: DATABASE_URL
               value: "sqlite:////data/quant_report.db"
+            - name: SYMBOL
+              value: "GC=F"                # ← Gold Futures (ทำงานได้จาก Oracle Cloud)
             - name: TELEGRAM_BOT_TOKEN
               valueFrom:
                 secretKeyRef:
