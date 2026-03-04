@@ -1,0 +1,30 @@
+# Core Framework
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.1
+
+# Data Science (no hard pin — let pip pick wheel compatible with Python 3.13)
+pandas>=2.2.3
+numpy>=2.0.0
+yfinance>=0.2.40
+
+# Scheduling
+APScheduler>=3.10.4
+
+# Database
+sqlmodel>=0.0.19
+aiosqlite>=0.20.0
+
+# Caching
+cachetools>=5.3.3
+
+# HTTP Client (for Telegram)
+httpx>=0.27.0
+
+# Config / Env
+python-dotenv>=1.0.1
+
+# Pydantic
+pydantic>=2.7.1
+
+# Date parsing (for candle timestamps)
+python-dateutil>=2.9.0

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quant-frontend
+  labels:
+    app: quant-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quant-frontend
+  template:
+    metadata:
+      labels:
+        app: quant-frontend
+    spec:
+      containers:
+        - name: quant-frontend
+          image: quant-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 30
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quant-frontend-svc
+spec:
+  selector:
+    app: quant-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
